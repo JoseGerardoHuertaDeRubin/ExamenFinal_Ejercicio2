@@ -1,0 +1,29 @@
+import math
+
+def f(x, y):
+    f = 1 + y**2
+    return f
+
+def RK(x, y, h):
+    k1 = h * f(x, y)
+    k2 = h * f(x + (h/2), y + (k1/2))
+    k3 = h * f(x + (h/2), y + (k2/2))
+    k4 = h * f(x + h, y + k3)
+    k = (1/6) * (k1 + 2*k2 + 2*k3 + k4)
+    return k
+    
+def main():
+    xf = 1.4 #A la que quiero llegar
+    h = 0.1
+    x = 0 #De condiciones iniciales
+    y = 0 #De condiciones iniciales
+    while x <= xf:
+        print("x:\t", "%.4f" % x)
+        print("y("+"%.4f" % x +"):", "%.8f" % y)
+        print(23*"-")
+        y += RK(x,y,h)
+        x += h
+    print("x:\t", "%.4f" % x)
+    print("y("+"%.4f" % x +"):", "%.8f" % y)
+    
+main()
